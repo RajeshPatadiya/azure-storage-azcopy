@@ -473,6 +473,9 @@ func (jm *jobMgr) ResetAllTransfersScheduled() {
 
 // ReportJobPartDone is called to report that a job part completed or failed
 func (jm *jobMgr) ReportJobPartDone(progressInfo jobPartProgressInfo) {
+	if jm.jobPartProgress == nil {
+		panic("ReportJobDone() uninitialized")
+	}
 	jm.jobPartProgress <- progressInfo
 }
 
